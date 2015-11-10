@@ -23,6 +23,7 @@ parser.add_argument('-tau0', type=float, dest='tau0', help='set the scattering w
 parser.add_argument('-fref', type=float, dest='fref', help='set the scattering fref in GHz (default: 1.500)', default=1.500)
 parser.add_argument('-scat_idx', type=float, dest='scat_idx', help='set the scattering power-law index (default: -4.0)', default=-4.0)
 parser.add_argument('-output', dest='output', help='set the output to file OR screen (default: file)', default='file')
+parser.add_argument('-outf', dest='outf', help='set the output file name (default: outf)', default='outf')
 parser.add_argument('--version', action='version', version='%(prog)s 0.0.1')
 args = parser.parse_args()
 ## Set some values - system
@@ -44,12 +45,13 @@ fref=args.fref              # in GHz
 scat_idx=args.scat_idx
 ## Set some values - output
 output=args.output
+outf=args.outf
 if output == 'screen':
     print "Outputting to screen using matplotlib"
     import matplotlib.pylab as plt
 if output == 'file':
     print "Outputting to file"
-    outf = file("outf", "w")
+    outf = file(outf, "w")
     np.set_printoptions(threshold=np.nan)
 
 ## Define some sympy symbols, t is in ms, f is in GHz
